@@ -1,4 +1,6 @@
 import math
+import matplotlib.pyplot as plt
+
 
 class grapho:
 
@@ -154,6 +156,49 @@ class grapho:
             return 1
         else:
             return 0
+    def graficar_knn_y_recta(self,dataset, Gi_nuevo, GF_nuevo, umbral=6):
+        # Separar puntos por clase (llego)
+        Gi_1, GF_1 = [], []
+        Gi_0, GF_0 = [], []
+
+        for fila in dataset:
+            Gi = fila[3]
+            GF = fila[4]
+            llego = fila[5]
+
+            if llego == 1:
+                Gi_1.append(Gi); GF_1.append(GF)
+            else:
+                Gi_0.append(Gi); GF_0.append(GF)
+
+        # --- imprimir la ecuación de la recta heurística ---
+        # Gi + GF = umbral  ->  GF = umbral - Gi
+        print(f"Recta heurística: Gi + GF = {umbral}")
+        print(f"En forma despejada: GF = {umbral} - Gi")
+
+        # --- graficar puntos ---
+        plt.figure()
+        plt.scatter(Gi_1, GF_1, marker='o', label="llego = 1")
+        plt.scatter(Gi_0, GF_0, marker='x', label="llego = 0")
+
+        # Punto nuevo
+        plt.scatter([Gi_nuevo], [GF_nuevo], marker='*', s=200, label="Nuevo punto")
+
+        # --- graficar la recta ---
+        # rango de Gi, para que la recta cubra tu nube de puntos
+        gi_min = min([fila[3] for fila in dataset])
+        gi_max = max([fila[3] for fila in dataset])
+
+        x_vals = [gi_min, gi_max]
+        y_vals = [umbral - x for x in x_vals]
+        plt.plot(x_vals, y_vals, linestyle='--', label="Recta heurística")
+
+        plt.xlabel("Gi")
+        plt.ylabel("GF")
+        plt.title("Plano Gi-GF: Dataset + Recta heurística")
+        plt.legend()
+        plt.grid(True)
+        plt.show()
 
 #grafo 7 y otro que no me acuerdo el numero
 

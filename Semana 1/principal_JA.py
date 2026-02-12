@@ -105,10 +105,16 @@ while(op!=9):
         for i,n in enumerate(dataset1):
             print(n)
     elif(op==7):
-        print("Aqui va lo que modificas")
-
+        for indice, nodo_inicio, nodo_final, grado_inicio, grado_final, llego, score in dataset1:
+             print(indice," | ", grado_inicio," | ", grado_final)
     elif(op==8):
-        print(migrafo.knn_clasificar(dataset1,4,2))
+        Gi_nuevo = int(input("grado inicial: "))
+        GF_nuevo = int(input("grado final: "))
+
+        # grafica
+        migrafo.graficar_knn_y_recta(dataset1, Gi_nuevo, GF_nuevo)
+
+
 
     elif(op==9):
         print("Bye bye baby")
