@@ -1,5 +1,6 @@
 import math
 import matplotlib.pyplot as plt
+from collections import deque
 
 
 class grapho:
@@ -199,6 +200,32 @@ class grapho:
         plt.legend()
         plt.grid(True)
         plt.show()
+    
+    def bfs_con_ruta(self, inicio, fin):
+        visitados = set()
+        cola = deque([inicio])
+        visitados.add(inicio)
+        padres = {}  # para reconstruir el camino
+
+        while cola:
+            nodo_actual = cola.popleft()
+
+            # Si llegamos al nodo final, reconstruimos el camino
+            if nodo_actual == fin:
+                camino = [fin]
+                while camino[-1] != inicio:
+                    camino.append(padres[camino[-1]])
+                camino.reverse()
+                return camino
+
+            for arista in nodo_actual.conexiones:
+                vecino = self.obtener_siguiente(arista, nodo_actual)
+                if vecino not in visitados:
+                    visitados.add(vecino)
+                    padres[vecino] = nodo_actual
+                    cola.append(vecino)
+
+        return None  # no hay camino
 
 #grafo 7 y otro que no me acuerdo el numero
 

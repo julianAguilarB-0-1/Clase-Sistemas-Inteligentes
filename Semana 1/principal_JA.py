@@ -17,7 +17,7 @@ def busca_indice(g,v):
 dataset1=[]
 inifin=[]   # <-- agregado
 
-while(op!=9):
+while(op!=10):
     print("Menu de grafos")
     print("1.Crear Grafo")
     print("2.-imprimir Grafo ")
@@ -27,7 +27,9 @@ while(op!=9):
     print("6.-LLenar e imprimir dataset ")
     print("7.-Dataset que pidio el profe")
     print("8.-Vecino mas cercano")
-    print("9.-Salir")
+    print("9.-BFS")
+    print("10.-Salir")
+    
 
     op=int(input("Teclea una opcion"))
 
@@ -42,24 +44,16 @@ while(op!=9):
             indice_origen=busca_indice(migrafo.nodos,valor_origen)
             valor_destino=input("Teclea el valor del destino ")
             indice_destino=busca_indice(migrafo.nodos,valor_destino)
-            migrafo.agregar_arista(
-                migrafo.nodos[indice_origen],
-                migrafo.nodos[indice_destino]
-            )
+            migrafo.agregar_arista(migrafo.nodos[indice_origen],migrafo.nodos[indice_destino])
         migrafo.actualizar_conexiones()
-
     elif(op==2):
         print("Nodos ",migrafo.nodos)
         print("Aristas",migrafo.aristas)
         for n in migrafo.nodos:
             print("Conexiones nodo",n.valor," ",n.conexiones)
-
     elif(op==3):
         indice_origen,indice_destino=inicio_fin()
-        aver=migrafo.trayectoria(
-            migrafo.nodos[indice_origen],
-            migrafo.nodos[indice_destino]
-        )
+        aver=migrafo.trayectoria(migrafo.nodos[indice_origen],migrafo.nodos[indice_destino])
         print(aver)
 
     elif(op==4):
@@ -113,8 +107,23 @@ while(op!=9):
 
         # grafica
         migrafo.graficar_knn_y_recta(dataset1, Gi_nuevo, GF_nuevo)
+    elif op == 9:
+        valor_origen = input("Nodo inicio BFS: ")
+        valor_destino = input("Nodo fin BFS: ")
 
+        indice_origen = busca_indice(migrafo.nodos, valor_origen)
+        indice_destino = busca_indice(migrafo.nodos, valor_destino)
 
-
-    elif(op==9):
+        if indice_origen is not None and indice_destino is not None:
+            resultado = migrafo.bfs_con_ruta(
+                migrafo.nodos[indice_origen],
+                migrafo.nodos[indice_destino]
+            )
+            if resultado:
+                print("Camino BFS:", [n.valor for n in resultado])
+            else:
+                print("No hay camino entre esos nodos")
+        else:
+            print("Nodo inicio o fin no encontrado")
+    elif(op==10):
         print("Bye bye baby")
