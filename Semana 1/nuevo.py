@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 if not cap.isOpened():
     print("No se pudo abrir la camara")
@@ -36,9 +36,9 @@ while True:
        
             cv2.drawContours(fondo_azul, [cnt], -1, (255,0, 255), 2)
 
-    #cv2.imshow("Dalmata", binaria1)
+    cv2.imshow("Dalmata", binaria1)
     #cv2.imshow("Maldata", binaria2)
-    cv2.imshow("Fondo Rojo", fondo_azul)
+    #cv2.imshow("Fondo Rojo", fondo_azul)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
