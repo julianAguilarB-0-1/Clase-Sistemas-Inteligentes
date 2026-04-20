@@ -14,13 +14,13 @@ ROI_X, ROI_Y, ROI_W, ROI_H = 5, 100, 250, 250
 headers = Lib_ann_ern.crear_headers(TIMESTEPS, NUM_FEATURES)
 Lib_ann_ern.crear_csv_si_no_existe(CSV_PATH, headers)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 if not cap.isOpened():
     raise RuntimeError("No se pudo abrir la cámara")
 
 buffer = deque(maxlen=TIMESTEPS)
 
-# 🔹 NUEVO: contador por dedo (1 a 5)
+# contador por dedo
 conteo = {1:0, 2:0, 3:0, 4:0, 5:0}
 
 print("CAPTURA DE FEATURES (RNN)")
@@ -43,8 +43,42 @@ while True:
             raise ValueError(f"extraer_features devolvió {feats.shape[0]} features, pero NUM_FEATURES={NUM_FEATURES}")
         buffer.append(feats)
 
-    cv2.putText(frame, f"Buffer: {len(buffer)}/{TIMESTEPS} | 1-5 guarda | r reset | ESC salir",
-                (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+    # Información del buffer
+    cv2.putText(frame, f"Buffer: {len(buffer)}/{TIMESTEPS}",
+                (10, 30),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (0,255,0),
+                2)
+
+    cv2.putText(frame, "1-5 guarda | r reset | ESC salir",
+                (10, 60),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.6,
+                (255,255,255),
+                2)
+
+    # Aviso cuando la secuencia está completa
+    if len(buffer) == TIMESTEPS:
+        cv2.putText(frame, "SECUENCIA LISTA - PRESIONA 1-5",
+                    (10, 95),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.7,
+                    (0,0,255),
+                    2)
+
+    # 🔹 Mostrar conteo de capturas en pantalla
+    y_offset = 130
+    for dedo in conteo:
+        texto = f"Dedo {dedo}: {conteo[dedo]}"
+        cv2.putText(frame, texto,
+                    (10, y_offset),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.6,
+                    (255,255,0),
+                    2)
+        y_offset += 25
+
     cv2.imshow("Camara", frame)
 
     key = cv2.waitKey(1) & 0xFF
@@ -67,7 +101,7 @@ while True:
         seq = np.stack(buffer, axis=0)
         Lib_ann_ern.guardar_secuencia(CSV_PATH, seq, label)
 
-        conteo[label] += 1  # 🔹 NUEVO
+        conteo[label] += 1
 
         print(f"✅ Guardada secuencia label={label} | frames={TIMESTEPS} | feats/frame={NUM_FEATURES}")
 

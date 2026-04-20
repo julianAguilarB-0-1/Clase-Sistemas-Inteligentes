@@ -1,0 +1,187 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": [
+        "hola", "buenas", "buenos dias", "buenas tardes", "buenas noches",
+        "hey", "que tal", "como estas", "holi", "saludos","Hola"
+      ],
+      "responses": [
+        "¡Hola! Bienvenido al Foro Estudiantil 👋 ¿En qué te puedo ayudar?",
+        "¡Hola! ¿Tienes alguna duda sobre el Foro Estudiantil o los temas escolares?"
+      ]
+    },
+    {
+      "tag": "despedida",
+      "patterns": [
+        "adios", "hasta luego", "bye", "nos vemos", "chao", "salir",
+        "hasta pronto", "me voy", "gracias adios"
+      ],
+      "responses": [
+        "¡Hasta luego! Sigue participando en el foro 👋",
+        "¡Nos vemos! Recuerda que puedes volver cuando tengas dudas."
+      ]
+    },
+    {
+      "tag": "agradecimiento",
+      "patterns": [
+        "gracias", "muchas gracias", "te lo agradezco", "thanks",
+        "muy amable", "gracias por tu ayuda"
+      ],
+      "responses": [
+        "¡De nada! Para eso estoy 😊",
+        "¡No hay problema! ¿Hay algo más en que pueda ayudarte?"
+      ]
+    },
+    {
+      "tag": "que_es_el_foro",
+      "patterns": [
+        "que es este foro", "para que sirve", "de que trata el foro",
+        "que puedo hacer aqui", "que es esto", "como funciona el foro",
+        "explícame el foro", "info del foro", "información del foro"
+      ],
+      "responses": [
+        "Este es un foro estudiantil donde puedes conversar sobre temas escolares, hacer preguntas, responder a compañeros y compartir conocimiento por categorías.",
+        "El foro es un espacio para que estudiantes conversen sobre materias, proyectos, tareas y más. Puedes publicar, responder y compartir temas.",
+        "Aquí los estudiantes se ayudan entre sí discutiendo temas escolares organizados por categorías. ¡Anímate a participar!"
+      ]
+    },
+    {
+      "tag": "categorias",
+      "patterns": [
+        "categorias", "categorías", "que categorias hay", "temas disponibles",
+        "secciones del foro", "categorias del foro", "en que temas puedo participar",
+        "que materias hay", "hay alguna categoría de matemáticas", "cuales catergorias hay"
+      ],
+      "responses": [
+        "El foro tiene categorías como: 📚 General\n💻 Académico\n📖 Grupo de Estudio\n🌐 Carrera y Empleo\n💡 Proyectos\n🎉 Off-topic\n\n¡Explora cada categorías!"
+      ]
+    },
+    {
+      "tag": "como_publicar",
+      "patterns": [
+        "como publico", "como hago una publicacion", "como creo un post",
+        "como escribo en el foro", "quiero publicar algo", "como inicio un tema",
+        "como abro un hilo", "como posteo", "pasos para publicar"
+      ],
+      "responses": [
+        "Para publicar: \n1) Inicia sesión, \n2) Elige una categoría, \n3) Haz clic en 'Nuevo tema', \n4) Escribe tu título y mensaje, \n5) Publica. \n¡Así de fácil!",
+        "Entra a la categoría que corresponde a tu interés, busca el botón 'Nuevo tema' y escribe tu pregunta o aportación.",
+        "Primero asegúrate de tener sesión iniciada, luego selecciona la categoría correcta y usa el botón para crear un nuevo tema."
+      ]
+    },
+    {
+      "tag": "como_responder",
+      "patterns": [
+        "como respondo", "como contesto una publicacion", "como comento",
+        "quiero responder a alguien", "como dejo un comentario",
+        "como participo en un hilo", "como contesto"
+      ],
+      "responses": [
+        "Para responder: abre el tema que te interesa y al final encontrarás el campo para escribir tu respuesta. ¡Comparte tu conocimiento!",
+        "Entra al hilo que quieras y usa el botón 'Responder' o el cuadro de texto al final para dejar tu comentario.",
+        "Busca el tema, desplázate hacia abajo y escribe tu respuesta en el recuadro habilitado para comentarios."
+      ]
+    },
+    {
+      "tag": "registro",
+      "patterns": [
+        "como me registro", "como creo una cuenta", "como me inscribo",
+        "quiero registrarme", "no tengo cuenta", "crear cuenta",
+        "como me uno al foro", "sign up", "registrarse"
+      ],
+      "responses": [
+        "Para registrarte haz clic en 'Registrarse' en la esquina superior derecha, llena el formulario con tu nombre,carrera, correo y contraseña, despues recibiras un correo de confirmación. ¡Listo!",
+        "Ve al botón de registro, ingresa tus datos escolares y confirma tu correo. En minutos tendrás tu cuenta activa.",
+        "El registro es rápido: nombre de usuario, correo y contraseña. Busca el botón 'Entrar' y selecciona 'Registrarse' en la página principal."
+      ]
+    },
+    {
+      "tag": "iniciar_sesion",
+      "patterns": [
+        "como inicio sesion", "no puedo entrar", "olvidé mi contraseña",
+        "como me logueo", "login", "entrar al foro", "acceder a mi cuenta",
+        "no recuerdo mi contraseña", "recuperar contraseña"
+      ],
+      "responses": [
+        "Para iniciar sesión usa tu correo y contraseña en el botón 'Entrar'. Si olvidaste tu contraseña, usa la opción '¿Olvidaste tu contraseña?'.",
+        "Haz clic en 'Iniciar sesión', ingresa tus datos. Si tienes problemas con la contraseña, solicita un restablecimiento por correo.",
+        "El acceso es con tu correo y contraseña registrados. En caso de problemas, contacta al administrador del foro."
+      ]
+    },
+    {
+      "tag": "buscar_tema",
+      "patterns": [
+        "como busco un tema", "como encuentro algo", "buscar en el foro",
+        "hay algo sobre", "existe algun tema de", "como uso el buscador",
+        "quiero encontrar información sobre", "buscar publicaciones"
+      ],
+      "responses": [
+        "Usa la barra de búsqueda en la parte superior del foro para encontrar temas por palabras clave.",
+        "El buscador del foro te permite encontrar publicaciones por título o contenido. ¡Escribe lo que necesitas!",
+        "Puedes buscar por categoría o usar el buscador general. Filtra por materia o palabra clave para resultados más precisos."
+      ]
+    },
+    {
+      "tag": "reglas",
+      "patterns": [
+        "cuales son las reglas", "que esta permitido", "que no puedo hacer",
+        "normas del foro", "politicas del foro", "reglas de convivencia",
+        "puedo insultar", "hay moderacion"
+      ],
+      "responses": [
+        "Desde la pagina principal puedes acceder a la pestaña de reglas del foro. Es importante seguirlas para mantener un ambiente agradable para todos.",
+        "Las reglas básicas son: respeto entre usuarios, no spam, lenguaje apropiado y publicar en la categoría correcta. ¡El respeto es lo primero!",
+        "El foro es un espacio académico. Se prohíbe lenguaje ofensivo, spam y contenido no escolar. Trata a todos con respeto.",
+        "Normas principales: sé respetuoso, escribe en la categoría correcta, no compartas información personal y ayuda a los demás."
+      ]
+    },
+    {
+      "tag": "ayuda_tarea",
+      "patterns": [
+        "no entiendo mi tarea", "tengo una duda de tarea", "ayuda con ejercicio",
+        "como resuelvo esto", "tengo una pregunta de clase", "me puedes ayudar con",
+        "tengo duda sobre", "no entiendo el tema de"
+      ],
+      "responses": [
+        "¡Publica tu duda en la categoría correcta del foro! Otros estudiantes o moderadores pueden ayudarte. 💡",
+        "Te recomiendo crear un nuevo tema en la categoría de tu materia explicando tu duda. ¡La comunidad está para ayudar!",
+        "El foro es el lugar perfecto para eso. Ve a la categoría de tu materia y comparte tu pregunta con detalle."
+      ]
+    },
+    {
+      "tag": "compartir",
+      "patterns": [
+        "como comparto algo", "puedo subir archivos", "como comparto un enlace",
+        "quiero compartir apuntes", "puedo adjuntar imagenes", "subir material"
+      ],
+      "responses": [
+        "Puedes compartir texto, enlaces y en algunas categorías archivos adjuntos. Crea una publicación y agrega tu material.",
+        "Al crear o responder una publicación tendrás opciones para adjuntar archivos o pegar enlaces. ¡Comparte tu conocimiento!",
+        "Las publicaciones permiten incluir links, imágenes y texto con formato. ¡Todo para que la información sea más clara!"
+      ]
+    },
+    {
+      "tag": "moderacion",
+      "patterns": [
+        "como reporto algo", "hay moderadores", "quiero reportar a alguien",
+        "vi contenido inapropiado", "como denuncio una publicacion",
+        "alguien me molesta", "reporte de usuario"
+      ],
+      "responses": [
+        "Puedes reportar contenido inapropiado usando el botón 'Reportar' en cada publicación. Los moderadores lo revisarán.",
+        "El foro tiene moderadores activos. Si ves contenido que viola las reglas, usa la opción de reporte disponible en cada post.",
+        "Ante cualquier problema de convivencia, usa el botón de reporte o contacta directamente a un moderador del foro."
+      ]
+    },
+    {
+      "tag": "desconocido",
+      "patterns": [],
+      "responses": [
+        "No entendí bien tu mensaje. ¿Puedes reformularlo? Puedo ayudarte con temas del foro como publicar, categorías, registro y más.",
+        "Hmm, no estoy seguro de entenderte. Intenta preguntar sobre: categorías, cómo publicar, registro o reglas del foro.",
+        "No tengo respuesta para eso aún. Prueba preguntando sobre cómo usar el foro o explora las categorías disponibles. 😊"
+      ]
+    }
+  ]
+}

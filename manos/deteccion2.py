@@ -3,7 +3,7 @@ import numpy as np
 from collections import deque
 import joblib
 import keras
-import serial #arduino
+import serial
 import time
 import Lib_ann_ern
 
@@ -11,24 +11,19 @@ MODEL_PATH  = "modelo_manos.keras"
 SCALER_PATH = "scaler_manos.joblib"
 
 TIMESTEPS = 10
-NUM_FEATURES = 32
+NUM_FEATURES = 48
 
 ROI_X, ROI_Y, ROI_W, ROI_H = 5, 100, 250, 250
 
-CAMERA_INDEX = 0
-
+CAMERA_INDEX = 1
 ADD_ONE_TO_PRED = False
-
-
 
 model = keras.models.load_model(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 
-#arduino
+# Arduino
 arduino = serial.Serial("COM3", 9600, timeout=1)
 time.sleep(2)
-
-
 
 cap = cv2.VideoCapture(CAMERA_INDEX)
 
@@ -37,15 +32,11 @@ if not cap.isOpened():
 
 buffer = deque(maxlen=TIMESTEPS)
 
-# =========================
-# VARIABLES CONTROL TIEMPO
-# =========================
-
-ultimo_numero = None
-inicio_tiempo = None
-senal_enviada = False
+pred_label = None
+conf = 0
 
 print("PREDICCIÓN EN TIEMPO REAL")
+print("ESPACIO = enviar número a Arduino")
 print("ESC = salir")
 
 while True:
@@ -83,47 +74,6 @@ while True:
         pred_text = f"Pred: {pred_label}"
         conf_text = f"Conf: {conf:.2f}"
 
-        # =========================
-        # CONTROL 3 SEGUNDOS
-        # =========================
-
-        if conf >= 0.90:
-
-            if pred_label == ultimo_numero:
-
-                if inicio_tiempo is None:
-                    inicio_tiempo = time.time()
-
-                tiempo_actual = time.time()
-
-                if tiempo_actual - inicio_tiempo >= 1 and not senal_enviada:
-
-                    print("Enviando señal:", pred_label)
-
-                    if pred_label == 1:
-                        arduino.write(b'1')
-                    elif pred_label == 2:
-                        arduino.write(b'2')
-                    elif pred_label == 3:
-                        arduino.write(b'3')
-                    elif pred_label == 4:
-                        arduino.write(b'4')
-                    elif pred_label == 5:
-                        arduino.write(b'5')
-
-                    senal_enviada = True
-
-            else:
-
-                ultimo_numero = pred_label
-                inicio_tiempo = time.time()
-                senal_enviada = False
-
-        else:
-
-            inicio_tiempo = None
-            senal_enviada = False
-
     cv2.putText(frame,f"Buffer: {len(buffer)}/{TIMESTEPS}",(10,30),
                 cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,255,0),2)
 
@@ -137,6 +87,24 @@ while True:
     cv2.imshow("Predict Manos",frame)
 
     key = cv2.waitKey(1) & 0xFF
+
+    # =========================
+    # PRESIONAR ESPACIO
+    # =========================
+    if key == 32 and pred_label is not None:
+
+        print("Enviando:", pred_label)
+
+        if pred_label == 1:
+            arduino.write(b'1')
+        elif pred_label == 2:
+            arduino.write(b'2')
+        elif pred_label == 3:
+            arduino.write(b'3')
+        elif pred_label == 4:
+            arduino.write(b'4')
+        elif pred_label == 5:
+            arduino.write(b'5')
 
     if key == 27:
         break
